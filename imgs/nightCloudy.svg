@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40.97 32.88">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+        filter: url(#drop-shadow-3);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+        filter: url(#drop-shadow-1);
+      }
+
+      .cls-3 {
+        fill: #fff;
+        filter: url(#drop-shadow-2);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="7.44" y1="34.35" x2="31.38" y2="10.41" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
+      <feOffset dx="7" dy="7"/>
+      <feGaussianBlur result="blur" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="drop-shadow-2" filterUnits="userSpaceOnUse">
+      <feOffset dx="7" dy="7"/>
+      <feGaussianBlur result="blur-2" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient-2" x1="7.35" y1="33.92" x2="22.14" y2="19.12" xlink:href="#linear-gradient"/>
+    <filter id="drop-shadow-3" filterUnits="userSpaceOnUse">
+      <feOffset dx="7" dy="7"/>
+      <feGaussianBlur result="blur-3" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur-3" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Layer_1" data-name="Layer 1">
+    <g>
+      <path class="cls-2" d="m39.51,22.69c0,5.46-4.42,9.99-9.88,9.99H9.88c-5.46,0-9.88-4.37-9.88-9.83,0-2.73,1.11-5.17,2.89-6.96,1.13-1.13,2.52-1.97,4.07-2.45.52-4.97,4.72-8.98,9.82-8.98s9.05,3.45,9.77,8.24h3.07c5.46,0,9.88,4.53,9.88,9.99Z"/>
+      <path class="cls-3" d="m40.97,13.39c-1.68,3.08-4.94,5.18-8.69,5.18-5.46,0-9.88-4.42-9.88-9.88,0-3.76,2.09-7.02,5.18-8.69-.75,1.4-1.18,3-1.18,4.7,0,5.46,4.42,9.88,9.88,9.88,1.7,0,3.3-.43,4.7-1.18Z"/>
+      <path class="cls-1" d="m27.17,26.71c0,3.37-2.73,6.17-6.1,6.17h-12.21c-3.37,0-6.1-2.7-6.1-6.08,0-1.68.68-3.2,1.79-4.3.7-.7,1.56-1.22,2.52-1.51.32-3.07,2.92-5.55,6.07-5.55s5.59,2.13,6.04,5.1h1.9c3.37,0,6.1,2.8,6.1,6.17Z"/>
+    </g>
+  </g>
+</svg>
