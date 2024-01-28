@@ -1,21 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 63 63">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #f9ff00;
-        filter: url(#drop-shadow-1);
-      }
-    </style>
-    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
-      <feOffset dx="7" dy="7"/>
-      <feGaussianBlur result="blur" stdDeviation="5"/>
-      <feFlood flood-color="#000" flood-opacity=".1"/>
-      <feComposite in2="blur" operator="in"/>
-      <feComposite in="SourceGraphic"/>
-    </filter>
-  </defs>
-  <g id="Layer_1" data-name="Layer 1">
-    <circle class="cls-1" cx="24.32" cy="24.71" r="15.98"/>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 63 63" style="enable-background:new 0 0 63 63;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#F9FF00;}
+</style>
+<g id="Слой_2_00000177483855122360786830000000121896129121213315_">
+</g>
+<g id="_Слой_2">
+	<g id="Layer_1">
+		<circle class="st0" cx="31.5" cy="39.2" r="23.8"/>
+	</g>
+</g>
 </svg>
