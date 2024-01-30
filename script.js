@@ -124,9 +124,13 @@ const clearList = () => {
 
 const citiesList = async(cities) => {
     clearList();
+    if (!cities.length) {
+        return;
+    }
     const list = document.createElement('ul');
     list.classList.add('test');
     for (let i = 0; i < cities.length; i++) {
+        
         const listElement = document.createElement('li');
         const cityTemplate = cities[i].name + ' ' + cities[i].country;
         listElement.textContent = cities[i].state === undefined ? cityTemplate : cityTemplate + " " + cities[i].state;
@@ -138,6 +142,7 @@ const citiesList = async(cities) => {
 
 const citiesQuery = async(citiesValue) => {
     if (citiesValue.length <= 1) {
+        clearList();
         return;
     }
     const cities = await fetch(URLCitiesList + citiesValue + limit + apiID);
@@ -150,6 +155,6 @@ const citiesQuery = async(citiesValue) => {
 
 const debounceHandler = debounce(function() {
     citiesQuery(this.value);
-}, 1000);
+}, 500);
 
 weatherSearch.addEventListener('input', debounceHandler);

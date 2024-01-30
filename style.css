@@ -50,10 +50,11 @@ body {
 .test li {
     border-radius: 5px;
     padding: 5px;
+    transition: all 0.4s;
 }
 
 .test li:hover {
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.367);
     cursor: pointer;
 }
 
