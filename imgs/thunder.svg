@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 39.51 38.21">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #30b3ff;
+        opacity: .9;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+        filter: url(#drop-shadow-1);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-2);
+        filter: url(#drop-shadow-2);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="7.44" y1="29.9" x2="31.38" y2="5.95" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
+      <feOffset dx="7" dy="7"/>
+      <feGaussianBlur result="blur" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient-2" x1="7.35" y1="29.46" x2="22.14" y2="14.66" xlink:href="#linear-gradient"/>
+    <filter id="drop-shadow-2" filterUnits="userSpaceOnUse">
+      <feOffset dx="7" dy="7"/>
+      <feGaussianBlur result="blur-2" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Layer_1" data-name="Layer 1">
+    <g>
+      <path class="cls-1" d="m15.92,25.31l-4.24,5.99c-.43.61,0,1.46.76,1.46h0c.72,0,1.17.79.79,1.41l-2.26,3.67c-.15.24.16.49.37.31l7.18-6.42c.57-.51.31-1.46-.45-1.6h0c-.64-.12-.96-.84-.62-1.39l1.47-2.41c.38-.62-.07-1.41-.79-1.41h-1.44c-.3,0-.58.15-.76.39Z"/>
+      <path class="cls-2" d="m39.51,18.23c0,5.46-4.42,9.99-9.88,9.99H9.88c-5.46,0-9.88-4.37-9.88-9.83,0-2.73,1.11-5.17,2.89-6.96,1.13-1.13,2.52-1.97,4.07-2.45C7.49,4.01,11.69,0,16.79,0s9.05,3.45,9.77,8.24h3.07c5.46,0,9.88,4.53,9.88,9.99Z"/>
+      <path class="cls-3" d="m27.17,22.25c0,3.37-2.73,6.17-6.1,6.17h-12.21c-3.37,0-6.1-2.7-6.1-6.08,0-1.68.68-3.2,1.79-4.3.7-.7,1.56-1.22,2.52-1.51.32-3.07,2.92-5.55,6.07-5.55s5.59,2.13,6.04,5.1h1.9c3.37,0,6.1,2.8,6.1,6.17Z"/>
+    </g>
+  </g>
+</svg>

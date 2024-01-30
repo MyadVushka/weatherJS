@@ -1,3 +1,4 @@
+const inputBlock = document.querySelector('.weather-form__input');
 const weatherButton = document.querySelector('.weather-form__input_button');
 const weatherGradus = document.querySelector('.weather-describe__text_gradus');
 const weatherSearch = document.querySelector('.weather-form__input_search');
@@ -5,8 +6,12 @@ const weatherCity = document.querySelector('.weather-describe__city_name');
 const weatherType = document.querySelector('.weather-describe__text_type');
 const timeToPerm = document.querySelector('.weather-describe__text_img');
 const weatherTime = document.querySelector('.weather-describe__city_time');
+const wrapper = document.querySelector('.wrapper');
 
-const url = 'https://api.openweathermap.org/data/2.5/weather?q=';
+const URLCitiesList = 'http://api.openweathermap.org/geo/1.0/direct?q=';
+const URLExactCity = 'https://api.openweathermap.org/data/2.5/weather?lat='
+const LON = '&lon=';
+const limit = '&limit=10';
 const apiID = '&appid=248e2e1bc7ad8ac7b1d7f10d18947003';
 
 const WEATHER_TYPE = new Map([
@@ -15,7 +20,7 @@ const WEATHER_TYPE = new Map([
     ['Snow', './imgs/snow.svg'],
     ['Mist', './imgs/mist.svg'],
     ['Drizzle', './imgs/raining.svg'],
-    //Clear 
+    ['Thunderstorm', './imgs/thunder.svg'],
 ]);
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -46,7 +51,6 @@ const toValidValue = (value) => {
 const toValidDate = (timezone) => {
     const date = new Date();
     date.setHours(date.getHours() - 3 + timezone/3600);
-    console.log(date.getMinutes());
     return date.getMinutes() < 10 ? date.getHours() + ':0' + date.getMinutes() : date.getHours() + ':' + date.getMinutes();
 }
 
@@ -61,9 +65,23 @@ const toValidWeather = (weatherType) => {
     }
 }
 
-async function weatherCheck() {
+document.addEventListener('click', (event) => {
+    const cityList = document.querySelector('.test');
+    if (event.target.classList.contains('weather-form__input_search') || event.target.classList.contains('.test')) {
+        if (cityList) {
+            cityList.style.display = 'block';
+        }
+    }
+    else {
+        if (cityList) {
+            cityList.style.display = 'none';
+        }
+    }
+})
+
+async function weatherCheck(...args) {
     let city = weatherSearch.value;
-    const info = await fetch(url + city + apiID);
+    const info = await fetch(URLExactCity + args[1] + LON + args[0] + apiID);
     res = await info.json();
     console.clear();
     console.log(res);
@@ -87,6 +105,51 @@ document.addEventListener('keydown', function(event) {
     }
 })
 
+const debounce = (func, delay) => {
+    let timeInterval;
+    return function(...args) {
+        clearTimeout(timeInterval);
+        timeInterval = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    }
+}
 
+const clearList = () => {
+    const test = document.querySelector('.test');
+    if (test) {
+        test.remove();
+    }
+}
 
+const citiesList = async(cities) => {
+    clearList();
+    const list = document.createElement('ul');
+    list.classList.add('test');
+    for (let i = 0; i < cities.length; i++) {
+        const listElement = document.createElement('li');
+        const cityTemplate = cities[i].name + ' ' + cities[i].country;
+        listElement.textContent = cities[i].state === undefined ? cityTemplate : cityTemplate + " " + cities[i].state;
+        listElement.addEventListener('click', () => weatherCheck(cities[i].lon, cities[i].lat));
+        list.appendChild(listElement);
+    }
+    inputBlock.appendChild(list);
+}
 
+const citiesQuery = async(citiesValue) => {
+    if (citiesValue.length <= 1) {
+        return;
+    }
+    const cities = await fetch(URLCitiesList + citiesValue + limit + apiID);
+    const response = await cities.json();
+    response.forEach(element => {
+        console.log(element);
+    });
+    citiesList(response);
+}
+
+const debounceHandler = debounce(function() {
+    citiesQuery(this.value);
+}, 1000);
+
+weatherSearch.addEventListener('input', debounceHandler);

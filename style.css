@@ -6,6 +6,16 @@
     font-size: 24px;
 }
 
+ul {
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+li {
+    list-style: none;
+}
+
 span {
     height: 0;
     color: white;
@@ -27,6 +37,28 @@ body {
 }
 
 .weather-form__input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.test {
+    top: 80%;
+    position: absolute;
+}
+
+.test li {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.test li:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+
+.weather-form__input-wrapper {
     display: flex;
     column-gap: 20px;
     align-items: center;
@@ -79,3 +111,4 @@ body {
     column-gap: 60px;
     padding-top: 40px;
 }
+
