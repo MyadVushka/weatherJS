@@ -57,9 +57,9 @@ const toValidWeather = (weatherType) => {
 }
 
 document.addEventListener('click', (event) => {
-    const cityList = document.querySelector('.test');
+    const cityList = document.querySelector('.cityList');
     if (cityList) {
-        if (event.target.classList.contains('weather-form__input_search') || event.target.classList.contains('test')) {
+        if (event.target.classList.contains('weather-form__input_search') || event.target.classList.contains('cityList')) {
             cityList.style.display = 'block';
         }
         else {
@@ -73,6 +73,9 @@ async function weatherCheck(...args) {
     CURRENT_CITY.lat = args[1];
     CURRENT_CITY.lon = args[0];
     
+    const citiesList = document.querySelector('.cityList');
+    citiesList.style.display = 'none';
+    
     const info = await fetch(URLExactCity + args[1] + LON + args[0] + apiID);
     const res = await info.json();
     console.clear();
@@ -82,6 +85,7 @@ async function weatherCheck(...args) {
     weatherType.innerText = res['weather'][0]['main'];
     weatherCity.innerText = res['name'];
     toValidWeather(res['weather'][0]['main']);
+    
 }
 
 const updateWeather = () => {
@@ -103,9 +107,9 @@ const debounce = (func, delay) => {
 }
 
 const clearList = () => {
-    const test = document.querySelector('.test');
-    if (test) {
-        test.remove();
+    const cityList = document.querySelector('.cityList');
+    if (cityList) {
+        cityList.remove();
     }
 }
 
@@ -115,7 +119,7 @@ const citiesList = async(cities) => {
         return;
     }
     const list = document.createElement('ul');
-    list.classList.add('test');
+    list.classList.add('cityList');
     cities.forEach((el, idx) => {
         const listElement = document.createElement('li');
         listElement.setAttribute('tabindex', `${idx+1}`);
@@ -142,6 +146,7 @@ const citiesQuery = async(citiesValue) => {
     }
     const cities = await fetch(URLCitiesList + citiesValue + limit + apiID);
     const response = await cities.json();
+
     citiesList(response);
 }
 
