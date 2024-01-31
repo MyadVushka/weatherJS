@@ -23,6 +23,12 @@ const WEATHER_TYPE = new Map([
     ['Thunderstorm', './imgs/thunder.svg'],
 ]);
 
+let CURRENT_CITY = {
+    state: 0,
+    lat: '',
+    lon: '',
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     let date = new Date();
     date = date.getHours()
@@ -52,19 +58,21 @@ const toValidWeather = (weatherType) => {
 
 document.addEventListener('click', (event) => {
     const cityList = document.querySelector('.test');
-    if (event.target.classList.contains('weather-form__input_search') || event.target.classList.contains('test')) {
-        if (cityList) {
+    if (cityList) {
+        if (event.target.classList.contains('weather-form__input_search') || event.target.classList.contains('test')) {
             cityList.style.display = 'block';
         }
-    }
-    else {
-        if (cityList) {
+        else {
             cityList.style.display = 'none';
         }
     }
 })
 
 async function weatherCheck(...args) {
+    CURRENT_CITY.state = 1;
+    CURRENT_CITY.lat = args[1];
+    CURRENT_CITY.lon = args[0];
+    
     const info = await fetch(URLExactCity + args[1] + LON + args[0] + apiID);
     const res = await info.json();
     console.clear();
@@ -77,7 +85,9 @@ async function weatherCheck(...args) {
 }
 
 const updateWeather = () => {
-    
+    if (CURRENT_CITY.state === 1) {
+        weatherCheck(CURRENT_CITY.lon, CURRENT_CITY.lat);
+    }
 }
 
 weatherButton.addEventListener('click', updateWeather);
