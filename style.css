@@ -50,14 +50,18 @@ body {
 .test li {
     border-radius: 5px;
     padding: 5px;
+    cursor: pointer;
     transition: all 0.4s;
 }
 
 .test li:hover {
     background-color: rgba(128, 128, 128, 0.367);
-    cursor: pointer;
 }
 
+.test li:focus {
+    background-color: rgba(128, 128, 128, 0.367);
+    outline: none;
+}
 
 .weather-form__input-wrapper {
     display: flex;
@@ -72,19 +76,19 @@ body {
     padding: 15px;
 }
 
-.weather-form__input_button {
+.weather-form__input_update-button {
     border: none;
     outline: none;
     padding: 15px;
     border-radius: 50%;
-    width: 65px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.weather-form__input_button img {
+.weather-form__input_update-button img {
     width: 25px;
-    justify-self: center;
-    align-self: center;
 }
 
 .weather-describe {

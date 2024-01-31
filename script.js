@@ -1,5 +1,5 @@
 const inputBlock = document.querySelector('.weather-form__input');
-const weatherButton = document.querySelector('.weather-form__input_button');
+const weatherButton = document.querySelector('.weather-form__input_update-button');
 const weatherGradus = document.querySelector('.weather-describe__text_gradus');
 const weatherSearch = document.querySelector('.weather-form__input_search');
 const weatherCity = document.querySelector('.weather-describe__city_name');
@@ -33,21 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 })
 
-let res;
-
-const toValidValue = (value) => {
-    value = value.split('').map((el, idx) => {
-        if (idx == 0) {
-            return el.toUpperCase();
-        }
-        else {
-            return el.toLowerCase();
-        }
-    }).join('');
-
-    return value;
-}
-
 const toValidDate = (timezone) => {
     const date = new Date();
     date.setHours(date.getHours() - 3 + timezone/3600);
@@ -67,7 +52,7 @@ const toValidWeather = (weatherType) => {
 
 document.addEventListener('click', (event) => {
     const cityList = document.querySelector('.test');
-    if (event.target.classList.contains('weather-form__input_search') || event.target.classList.contains('.test')) {
+    if (event.target.classList.contains('weather-form__input_search') || event.target.classList.contains('test')) {
         if (cityList) {
             cityList.style.display = 'block';
         }
@@ -80,30 +65,22 @@ document.addEventListener('click', (event) => {
 })
 
 async function weatherCheck(...args) {
-    let city = weatherSearch.value;
     const info = await fetch(URLExactCity + args[1] + LON + args[0] + apiID);
-    res = await info.json();
+    const res = await info.json();
     console.clear();
     console.log(res);
-    if (!city.length || res['cod'] < 200 || res['cod'] > 299) {
-        return;
-    }
-    else {
-        city = toValidValue(city);
-        weatherTime.innerText = toValidDate(res['timezone']);
-        weatherGradus.innerText = Math.round(res['main']['temp']-273) + ' C';
-        weatherType.innerText = res['weather'][0]['main'];
-        weatherCity.innerText = res['name'];
-        toValidWeather(res['weather'][0]['main']);
-    }
+    weatherTime.innerText = toValidDate(res['timezone']);
+    weatherGradus.innerText = Math.round(res['main']['temp']-273) + ' C';
+    weatherType.innerText = res['weather'][0]['main'];
+    weatherCity.innerText = res['name'];
+    toValidWeather(res['weather'][0]['main']);
 }
 
-weatherButton.addEventListener('click', weatherCheck);
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        weatherCheck();
-    }
-})
+const updateWeather = () => {
+    
+}
+
+weatherButton.addEventListener('click', updateWeather);
 
 const debounce = (func, delay) => {
     let timeInterval;
@@ -129,15 +106,23 @@ const citiesList = async(cities) => {
     }
     const list = document.createElement('ul');
     list.classList.add('test');
-    for (let i = 0; i < cities.length; i++) {
-        
+    cities.forEach((el, idx) => {
         const listElement = document.createElement('li');
-        const cityTemplate = cities[i].name + ' ' + cities[i].country;
-        listElement.textContent = cities[i].state === undefined ? cityTemplate : cityTemplate + " " + cities[i].state;
-        listElement.addEventListener('click', () => weatherCheck(cities[i].lon, cities[i].lat));
+        listElement.setAttribute('tabindex', `${idx+1}`);
+        const cityTemplate = el.name + ' ' + el.country;
+        listElement.textContent = el.state === undefined ? cityTemplate : cityTemplate + " " + el.state;
+        listElement.addEventListener('click', () => weatherCheck(el.lon, el.lat));
+        listElement.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' && document.activeElement === listElement) {
+                weatherCheck(el.lon, el.lat);
+            }
+        });
         list.appendChild(listElement);
-    }
+    })
+
     inputBlock.appendChild(list);
+    list.firstChild.focus();
+    
 }
 
 const citiesQuery = async(citiesValue) => {
@@ -147,9 +132,6 @@ const citiesQuery = async(citiesValue) => {
     }
     const cities = await fetch(URLCitiesList + citiesValue + limit + apiID);
     const response = await cities.json();
-    response.forEach(element => {
-        console.log(element);
-    });
     citiesList(response);
 }
 
