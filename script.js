@@ -12,7 +12,7 @@ const URLCitiesList = 'http://api.openweathermap.org/geo/1.0/direct?q=';
 const URLExactCity = 'https://api.openweathermap.org/data/2.5/weather?lat='
 const LON = '&lon=';
 const limit = '&limit=10';
-const apiID = '&appid=248e2e1bc7ad8ac7b1d7f10d18947003';
+const apiID = // your own api key;
 
 const WEATHER_TYPE = new Map([
     ['Clouds', './imgs/cloudy.svg'],
