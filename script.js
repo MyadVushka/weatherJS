@@ -12,7 +12,7 @@ const URLCitiesList = 'http://api.openweathermap.org/geo/1.0/direct?q=';
 const URLExactCity = 'https://api.openweathermap.org/data/2.5/weather?lat='
 const LON = '&lon=';
 const limit = '&limit=10';
-const apiID = // your own api key;
+//const apiID = '&appid=' + 'Your own API';
 
 const WEATHER_TYPE = new Map([
     ['Clouds', './imgs/cloudy.svg'],
@@ -30,6 +30,7 @@ let CURRENT_CITY = {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
+    
     let date = new Date();
     date = date.getHours()
     if (date >= 6 && date <= 19 ) {
@@ -38,6 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
         timeToPerm.src = './imgs/night.svg';
     }
 })
+
+navigator.geolocation.getCurrentPosition(
+    (position) => weatherCheck(position.coords.longitude, position.coords.latitude),
+    (error) => weatherCheck(27.5618, 53.9025));
 
 const toValidDate = (timezone) => {
     const date = new Date();
@@ -74,12 +79,12 @@ async function weatherCheck(...args) {
     CURRENT_CITY.lon = args[0];
     
     const citiesList = document.querySelector('.cityList');
-    citiesList.style.display = 'none';
+    if (citiesList) {
+        citiesList.style.display = 'none';
+    }
     
     const info = await fetch(URLExactCity + args[1] + LON + args[0] + apiID);
     const res = await info.json();
-    console.clear();
-    console.log(res);
     weatherTime.innerText = toValidDate(res['timezone']);
     weatherGradus.innerText = Math.round(res['main']['temp']-273) + ' C';
     weatherType.innerText = res['weather'][0]['main'];
